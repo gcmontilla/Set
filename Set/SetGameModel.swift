@@ -14,21 +14,21 @@ struct SetGameModel {
     private let numberShapes: Int = 4
     private let initCards: Int = 12
     
-    init(shapes: [String], opacities: [Double], colors: [String]) {
-        deck = createDeck(shapes: shapes, opacities: opacities, colors: colors)
+    init(symbols: [String], opacities: [Double], colors: [String]) {
+        deck = createDeck(symbols: symbols, opacities: opacities, colors: colors)
         cards = chooseInitialCards()
         selectedCards = Array<Card>()
     }
     
-    private func createDeck(shapes: [String], opacities: [Double], colors: [String]) -> [Card] {
+    private func createDeck(symbols: [String], opacities: [Double], colors: [String]) -> [Card] {
         var count = 0
         var deck = Array<Card>()
         
-        for shape in shapes {
+        for symbol in symbols {
             for opacity in opacities {
                 for color in colors {
                     for number in 1..<numberShapes {
-                        let card = Card(id: count, shape: shape, color: color, opacity: opacity, numberOfShapes: number)
+                        let card = Card(id: count, symbol: symbol, color: color, opacity: opacity, numberOfShapes: number)
                         count += 1
                         deck.append(card)
                     }
@@ -64,7 +64,7 @@ struct SetGameModel {
     
     struct Card: Identifiable {
         var id: Int
-        var shape: String
+        var symbol: String
         var color: String
         var opacity: Double
         var numberOfShapes: Int

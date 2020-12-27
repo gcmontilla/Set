@@ -12,7 +12,7 @@ struct SetGameView: View {
     
     var body: some View {
         Grid(setGameViewModel.cards) { card in
-            CardView(shapeString: card.shape, opacity: card.opacity, color: getColor(of: card.color), numberOfShapes: card.numberOfShapes)iter
+            CardView(card: card)
                 .padding()
         }
         .padding()
@@ -21,17 +21,6 @@ struct SetGameView: View {
             if setGameViewModel.deck.count != 0 {
                 Button("Add Cards") { setGameViewModel.addCards() }
             }
-        }
-    }
-    
-    func getColor(of string: String) -> Color{
-        switch string {
-        case "green":
-            return Color.green
-        case "red":
-            return Color.red
-        default:
-            return Color.blue
         }
     }
 }

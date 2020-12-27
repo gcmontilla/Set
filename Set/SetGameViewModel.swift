@@ -11,11 +11,11 @@ class SetGameViewModel: ObservableObject {
     @Published private var setGame: SetGameModel = SetGameViewModel.createSetGame()
     
     private static func createSetGame() -> SetGameModel {
-        let shapes = ["rectangle", "circle", "diamond"]
-        let opacacities = [0.0, 0.5, 1.0]
+        let symbols = ["rectangle", "circle", "diamond"]
+        let opacacities = [0.0, 0.50, 1.0]
         let colors = ["green", "red", "blue"]
         
-        return SetGameModel(shapes: shapes, opacities: opacacities, colors: colors)
+        return SetGameModel(symbols: symbols, opacities: opacacities, colors: colors)
     }
     
     func newGame() {
@@ -39,4 +39,8 @@ class SetGameViewModel: ObservableObject {
     func addCards() {
         setGame.addCards()
     }
+}
+
+enum Symbols {
+    case rectangle, circle, diamond
 }
