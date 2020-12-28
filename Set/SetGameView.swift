@@ -11,15 +11,17 @@ struct SetGameView: View {
     @ObservedObject var setGameViewModel: SetGameViewModel
     
     var body: some View {
-        Grid(setGameViewModel.cards) { card in
+        Grid(setGameViewModel.cardsOnScreen) { card in
             CardView(card: card)
-                .padding()
+                .aspectRatio(2/3, contentMode: .fit)
+                .onTapGesture(perform: {
+                    setGameViewModel.select(card: card)
+                })
         }
-        .padding()
         HStack {
             Button("New Game") { setGameViewModel.newGame() }
             if setGameViewModel.deck.count != 0 {
-                Button("Add Cards") { setGameViewModel.addCards() }
+                Button("Add Cards") { setGameViewModel.getNewCards() }
             }
         }
     }

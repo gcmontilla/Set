@@ -9,9 +9,6 @@ import SwiftUI
 
 struct CardView: View {
     var card: SetGameModel.Card
-    var color: Color {
-        getColor(of: card.color)
-    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -20,41 +17,22 @@ struct CardView: View {
     }
     
     private func body(for size: CGSize) -> some View {
-        VStack {
-            ForEach(0..<card.numberOfShapes) { _ in
-                buildSymbol(from: card)
-            }
+        ZStack{
+            RoundedRectangle(cornerRadius: cornerRadius).stroke(Color.yellow, lineWidth: card.isSelected ? lineWidth : 0)
+            VStack {
+                ForEach(0..<card.numberOfShapes) { _ in
+                    buildSymbol(from: card)
+                }
+            }.padding()
         }
+        
     }
     
     private func buildSymbol(from: SetGameModel.Card) -> some View {
-        let color = getColor(of: card.color)
-        let overlay = getSymbol(from: card.symbol).stroke(lineWidth: lineWidth).fill(color)
-        let symbol = getSymbol(from: card.symbol).fill(color).opacity(card.opacity).overlay(overlay)
+        let overlay = getSymbol(from: card.symbol).stroke(lineWidth: lineWidth).fill(card.color)
+        let symbol = getSymbol(from: card.symbol).fill(card.color).opacity(card.opacity).overlay(overlay)
         
         return AnyView(symbol)
-    }
-    
-    private func getSymbol(from string: String) -> some Shape {
-        switch string {
-        case "rectangle":
-            return AnyShape(RoundedRectangle(cornerRadius: cornerRadius))
-        case "circle":
-            return AnyShape(Circle())
-        default:
-            return AnyShape(Diamond())
-        }
-    }
-    
-    private func getColor(of string: String) -> Color{
-        switch string {
-        case "green":
-            return Color.green
-        case "red":
-            return Color.red
-        default:
-            return Color.blue
-        }
     }
     
     // MARK: - Drawing Constraints

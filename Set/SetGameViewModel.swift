@@ -11,9 +11,9 @@ class SetGameViewModel: ObservableObject {
     @Published private var setGame: SetGameModel = SetGameViewModel.createSetGame()
     
     private static func createSetGame() -> SetGameModel {
-        let symbols = ["rectangle", "circle", "diamond"]
+        let symbols = [Symbol.rectangle, Symbol.circle, Symbol.diamond]
         let opacacities = [0.0, 0.50, 1.0]
-        let colors = ["green", "red", "blue"]
+        let colors = [Color.green, Color.red, Color.blue]
         
         return SetGameModel(symbols: symbols, opacities: opacacities, colors: colors)
     }
@@ -27,20 +27,16 @@ class SetGameViewModel: ObservableObject {
         setGame.deck
     }
     
-    var cards: Array<SetGameModel.Card> {
-        setGame.cards
+    var cardsOnScreen: Array<SetGameModel.Card> {
+        setGame.cardsOnScreen
     }
     
     // MARK: - Intents
-    func choose(card: SetGameModel.Card) {
-        setGame.choose(card: card)
+    func select(card: SetGameModel.Card) {
+        setGame.select(card: card)
     }
     
-    func addCards() {
-        setGame.addCards()
+    func getNewCards() {
+        setGame.getNewCards()
     }
-}
-
-enum Symbols {
-    case rectangle, circle, diamond
 }
