@@ -22,7 +22,6 @@
 		374A614D25983C1100A1336B /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A614C25983C1100A1336B /* Diamond.swift */; };
 		37FE24D125984D3E00AA5147 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE24D025984D3E00AA5147 /* CardView.swift */; };
 		37FE24E02599615000AA5147 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE24DF2599615000AA5147 /* Cardify.swift */; };
-		37FE24E5259977FB00AA5147 /* Array+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE24E4259977FB00AA5147 /* Array+Shape.swift */; };
 		37FE24EA259979AF00AA5147 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE24E9259979AF00AA5147 /* Symbol.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		374A614C25983C1100A1336B /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		37FE24D025984D3E00AA5147 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37FE24DF2599615000AA5147 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
-		37FE24E4259977FB00AA5147 /* Array+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shape.swift"; sourceTree = "<group>"; };
 		37FE24E9259979AF00AA5147 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +117,6 @@
 			children = (
 				37299EEC25982EE2009B266C /* Array+Identifiable.swift */,
 				37299EEB25982EE2009B266C /* Array+Only.swift */,
-				37FE24E4259977FB00AA5147 /* Array+Shape.swift */,
 				37FE24DF2599615000AA5147 /* Cardify.swift */,
 				37FE24D025984D3E00AA5147 /* CardView.swift */,
 				374A614C25983C1100A1336B /* Diamond.swift */,
@@ -300,7 +297,6 @@
 				37FE24EA259979AF00AA5147 /* Symbol.swift in Sources */,
 				37FE24D125984D3E00AA5147 /* CardView.swift in Sources */,
 				37299EEE25982EE3009B266C /* GridLayout.swift in Sources */,
-				37FE24E5259977FB00AA5147 /* Array+Shape.swift in Sources */,
 				37299EED25982EE3009B266C /* Grid.swift in Sources */,
 				37299EF025982EE3009B266C /* Array+Identifiable.swift in Sources */,
 				37299EEF25982EE3009B266C /* Array+Only.swift in Sources */,

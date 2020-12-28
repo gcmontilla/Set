@@ -18,14 +18,15 @@ struct CardView: View {
     
     private func body(for size: CGSize) -> some View {
         ZStack{
-            RoundedRectangle(cornerRadius: cornerRadius).stroke(Color.yellow, lineWidth: card.isSelected ? lineWidth : 0)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(card.isSelected ? Color.yellow : Color.black , lineWidth: lineWidth)
             VStack {
                 ForEach(0..<card.numberOfShapes) { _ in
-                    buildSymbol(from: card)
+                    buildSymbol(from: card).frame(width: size.width/2, height: size.height/10, alignment: .center)
                 }
-            }.padding()
+            }.padding(padding)
         }
-        
+            .padding(padding)
     }
     
     private func buildSymbol(from: SetGameModel.Card) -> some View {
@@ -38,6 +39,7 @@ struct CardView: View {
     // MARK: - Drawing Constraints
     private let lineWidth: CGFloat = 3
     private let cornerRadius: CGFloat = 5
+    private let padding: CGFloat = 5
 }
 
 struct AnyShape: Shape {
@@ -57,6 +59,6 @@ struct AnyShape: Shape {
 
 //struct CardView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CardView()
+//        CardView(card: <#SetGameModel.Card#>)
 //    }
 //}

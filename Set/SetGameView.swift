@@ -13,18 +13,27 @@ struct SetGameView: View {
     var body: some View {
         Grid(setGameViewModel.cardsOnScreen) { card in
             CardView(card: card)
-                .aspectRatio(2/3, contentMode: .fit)
+                .aspectRatio(dimensions, contentMode: .fit)
                 .onTapGesture(perform: {
                     setGameViewModel.select(card: card)
                 })
         }
+        buttons
+    }
+    
+    var buttons: some View {
         HStack {
+            Spacer()
             Button("New Game") { setGameViewModel.newGame() }
-            if setGameViewModel.deck.count != 0 {
-                Button("Add Cards") { setGameViewModel.getNewCards() }
-            }
+            Spacer()
+            Button("Add Cards") { setGameViewModel.getNewCards() }
+                .disabled(setGameViewModel.deck.count == 0)
+            Spacer()
         }
     }
+    
+    // MARK: - Drawing Constraints
+    private let dimensions: CGSize = CGSize(width: 2.0, height: 3.0)
 }
 
 struct ContentView_Previews: PreviewProvider {

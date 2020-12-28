@@ -19,7 +19,7 @@ struct SetGameModel {
     
     init(symbols: [Symbol], opacities: [Double], colors: [Color]) {
         deck = createDeck(symbols: symbols, opacities: opacities, colors: colors)
-        cardsOnScreen = chooseInitialCards()
+        cardsOnScreen = getInitialCards()
         hand = Array<Card>()
     }
     
@@ -43,7 +43,7 @@ struct SetGameModel {
         return deck
     }
     
-    private mutating func chooseInitialCards() -> [Card] {
+    private mutating func getInitialCards() -> [Card] {
         var cards = Array<Card>()
         
         for _ in 0..<initCards {
@@ -62,16 +62,9 @@ struct SetGameModel {
     }
     
     mutating func select(card: Card) {
-        if hand.count < maxSelectedCards {
-            toggleSelect(of: card)
-        }
-        
+        if hand.count < maxSelectedCards { toggleSelect(of: card) }
         if hand.count == maxSelectedCards {
-            if isHandASet() {
-                removeCardsFromGame()
-            } else {
-                unselectCards()
-            }
+            isHandASet() ? removeCardsFromGame() : unselectCards()
         }
     }
     
