@@ -63,22 +63,25 @@ struct SetGameModel {
     
     mutating func select(card: Card) {
         if hand.count < maxSelectedCards {
-            if let chosenIndex: Int = cardsOnScreen.firstIndex(matching: card) {
-                // This could be a function
-                cardsOnScreen[chosenIndex].isSelected = !cardsOnScreen[chosenIndex].isSelected
-                if cardsOnScreen[chosenIndex].isSelected {
-                    hand.append(cardsOnScreen[chosenIndex])
-                } else {
-                    unselect(card: cardsOnScreen[chosenIndex])
-                }
-            }
+            toggleSelect(of: card)
         }
         
         if hand.count == maxSelectedCards {
             if isHandASet() {
                 removeCardsFromGame()
             } else {
-                unselectCards(in: hand)
+                unselectCards()
+            }
+        }
+    }
+    
+    mutating func toggleSelect(of card: Card) {
+        if let chosenIndex: Int = cardsOnScreen.firstIndex(matching: card) {
+            cardsOnScreen[chosenIndex].isSelected = !cardsOnScreen[chosenIndex].isSelected
+            if cardsOnScreen[chosenIndex].isSelected {
+                hand.append(cardsOnScreen[chosenIndex])
+            } else {
+                unselect(card: cardsOnScreen[chosenIndex])
             }
         }
     }
@@ -90,11 +93,10 @@ struct SetGameModel {
             }
         }
         hand.removeAll()
-        print(hand.count)
     }
     
-    mutating func unselectCards(in cards: [Card]) {
-        for card in cards {
+    mutating func unselectCards() {
+        for card in hand {
             unselect(card: card)
         }
     }
