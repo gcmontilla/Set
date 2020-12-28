@@ -109,47 +109,10 @@ struct SetGameModel {
     }
     
     private func isHandASet() -> Bool {
-        let symbols = getSymbolsFromHand()
-        let colors = getColorsFromHand()
-        let numberOfShapes = getNumberOfShapesFromHand()
-        
-        return symbols == colors && colors == numberOfShapes
-    }
-
-    private func getSymbolsFromHand() -> Bool {
-        let symbol: Symbol = hand.first!.symbol
-        
-        for card in hand {
-            if symbol != card.symbol {
-                return false
-            }
-        }
-            
-        return true
-    }
-    
-    private func getColorsFromHand() -> Bool {
-        let color: Color = hand.first!.color
-        
-        for card in hand {
-            if color != card.color {
-                return false
-            }
-        }
-            
-        return true
-    }
-    
-    private func getNumberOfShapesFromHand() -> Bool {
-        let number: Int = hand.first!.numberOfShapes
-        
-        for card in hand {
-            if number != card.numberOfShapes {
-                return false
-            }
-        }
-        
-        return true
+        return
+            hand[0] != hand[1] &&
+            hand[1] != hand[2] &&
+            hand[0] != hand[2]
     }
     
     struct Card: Identifiable {
@@ -160,5 +123,19 @@ struct SetGameModel {
         var numberOfShapes: Int
         var isSelected: Bool = false
         var isMatched: Bool = false
+        
+        static func == (lhs: Card, rhs: Card) -> Bool {
+            return
+                lhs.symbol == rhs.symbol &&
+                lhs.color == rhs.color &&
+                lhs.numberOfShapes == rhs.numberOfShapes
+        }
+        
+        static func != (lhs: Card, rhs: Card) -> Bool {
+            return
+                lhs.symbol != rhs.symbol &&
+                lhs.color != rhs.color &&
+                lhs.numberOfShapes != rhs.numberOfShapes
+        }
     }
 }
