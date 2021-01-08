@@ -18,20 +18,24 @@ struct CardView: View {
     
     private func body(for size: CGSize) -> some View {
         ZStack{
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(card.isSelected ? Color.yellow : Color.black , lineWidth: lineWidth)
             VStack {
-                ForEach(0..<card.numberOfShapes) { _ in
-                    buildSymbol(from: card).frame(width: size.width/2, height: size.height/10, alignment: .center)
+                ForEach(0..<card.numberOfSymbols) { _ in
+                    buildSymbol(from: card)
                 }
-            }.padding(padding)
+            }
+                .padding()
         }
-            .padding(padding)
+            .cardify()
+            .transition(.scale)
     }
     
     private func buildSymbol(from: SetGameModel.Card) -> some View {
-        let overlay = getSymbol(from: card.symbol).stroke(lineWidth: lineWidth).fill(card.color)
-        let symbol = getSymbol(from: card.symbol).fill(card.color).opacity(card.opacity).overlay(overlay)
+        let overlay = getSymbol(from: card.symbol).stroke(lineWidth: lineWidth)
+            .fill(card.color)
+        let symbol = getSymbol(from: card.symbol)
+            .fill(card.color)
+            .opacity(card.opacity)
+            .overlay(overlay)
         
         return AnyView(symbol)
     }
@@ -57,8 +61,9 @@ struct AnyShape: Shape {
         private let _path: (CGRect) -> Path
 }
 
-//struct CardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView(card: <#SetGameModel.Card#>)
-//    }
-//}
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        let card = SetGameModel.Card(id: 0, symbol: Symbol.diamond, color: .green, opacity: 0.5, numberOfSymbols: 3)
+        CardView(card: card)
+    }
+}

@@ -31,7 +31,7 @@ struct SetGameModel {
             for opacity in opacities {
                 for color in colors {
                     for number in 1..<maxNumberOfSymbols+1 {
-                        let card = Card(id: count, symbol: symbol, color: color, opacity: opacity, numberOfShapes: number)
+                        let card = Card(id: count, symbol: symbol, color: color, opacity: opacity, numberOfSymbols: number)
                         count += 1
                         deck.append(card)
                     }
@@ -115,7 +115,7 @@ struct SetGameModel {
         var symbol: Symbol
         var color: Color
         var opacity: Double
-        var numberOfShapes: Int
+        var numberOfSymbols: Int
         var isSelected: Bool = false
         var isMatched: Bool = false
         
@@ -123,14 +123,14 @@ struct SetGameModel {
             return
                 lhs.symbol == rhs.symbol &&
                 lhs.color == rhs.color &&
-                lhs.numberOfShapes == rhs.numberOfShapes
+                lhs.numberOfSymbols == rhs.numberOfSymbols
         }
         
         static func != (lhs: Card, rhs: Card) -> Bool {
             return
                 lhs.symbol != rhs.symbol &&
                 lhs.color != rhs.color &&
-                lhs.numberOfShapes != rhs.numberOfShapes
+                lhs.numberOfSymbols != rhs.numberOfSymbols
         }
     }
 }

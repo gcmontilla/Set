@@ -13,11 +13,13 @@ struct SetGameView: View {
     var body: some View {
         Grid(setGameViewModel.cardsOnScreen) { card in
             CardView(card: card)
-                .aspectRatio(dimensions, contentMode: .fit)
+                .aspectRatio(dimensions, contentMode: .fill)
                 .onTapGesture(perform: {
                     setGameViewModel.select(card: card)
                 })
+                .padding()
         }
+        .padding()
         buttons
     }
     
@@ -34,6 +36,7 @@ struct SetGameView: View {
     
     // MARK: - Drawing Constraints
     private let dimensions: CGSize = CGSize(width: 2.0, height: 3.0)
+    private let padding: CGFloat = 5.0
 }
 
 struct ContentView_Previews: PreviewProvider {
